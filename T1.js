@@ -159,7 +159,7 @@ module.exports.run = async function ({ api, event, args, Users, permssion, getTe
                 var listAdd = [];
 
                 for (const id of mention) {
-                    const index = config.ADMINBOT.findIndex(item => (item == id) || item?.id == id);
+                    const index = config.ADMINBOT.findIndex(item => (item == id || item?.id == id));
                     ADMINBOT.splice(index, 1);
                     config.ADMINBOT.splice(index, 1);
                     listAdd.push(`${id} - ${event.mentions[id]}`);
@@ -169,7 +169,7 @@ module.exports.run = async function ({ api, event, args, Users, permssion, getTe
                 return api.sendMessage(getText("removedAdmin", mention.length, listAdd.join("\n").replace(/\@/g, "")), threadID, messageID);
             }
             else if (content.length != 0 && !isNaN(content[0])) {
-                const index = config.ADMINBOT.findIndex(item => (item?.id?.toString() == content[0] || item?.toString() == content[0]));
+                const index = config.ADMINBOT.findIndex(item => (item?.id == content[0] || item == content[0]));
                 ADMINBOT.splice(index, 1);
                 config.ADMINBOT.splice(index, 1);
                 const name = (await Users.getData(content[0])).name
