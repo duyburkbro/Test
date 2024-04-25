@@ -73,8 +73,8 @@ module.exports.run = async function ({ api, event, args, Users, permssion, getTe
             var msg = [];
             for (const idAdmin of listAdmin) {
                 if (parseInt(idAdmin) || parseInt(idAdmin?.id)) {
-                  const name = (await Users.getData(idAdmin||idAdmin?.id)).name
-                    msg.push(`• 𝗧𝗲̂𝗻: ${name}\n• 𝗟𝗶𝗻𝗸 𝗙𝗕: fb.com/${idAdmin || idAdmin?.id}`);
+                  const name = (await Users.getData(idAdmin?.id || idAdmin)).name
+                    msg.push(`• 𝗧𝗲̂𝗻: ${name}\n• 𝗟𝗶𝗻𝗸 𝗙𝗕: fb.com/${idAdmin?.id|| idAdmin}`);
                     if (idAdmin?.timethue) {
                       let timethue =moment.tz(idAdmin?.timethue * 1000, 'Asia/Ho_Chi_Minh').format('DD/MM/YYYY');
                       msg.push('TimeThue: ' + timethue + '\n━━━━━━━━━━━━━━━━`')
